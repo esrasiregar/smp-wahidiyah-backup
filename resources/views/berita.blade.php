@@ -63,11 +63,11 @@ $beritaByMonth = [
 
                     @foreach ($items as $index => $item)
                         <div class="bg-white shadow-lg rounded-xl overflow-hidden berita-item">
-                            <a href="{{ url('/berita/detail/'.$loop->iteration) }}">
+                            <a href="{{ url('/berita/detail/'.$bulan.'/'.$loop->iteration) }}">
                                 <img src="{{ asset($item['image']) }}" alt="{{ $item['title'] }}" class="w-full h-40 object-cover">
                             </a>
                             <div class="p-4">
-                                <a href="{{ url('/berita/detail/'.$loop->iteration) }}">
+                                <a href="{{ url('/berita/detail/'.$bulan.'/'.$loop->iteration) }}">
                                     <h2 class="font-bold text-lg mb-2 hover:text-[#4AA29D] transition">
                                         {{ $item['title'] }}
                                     </h2>
@@ -83,7 +83,7 @@ $beritaByMonth = [
                 {{-- Tombol (muncul hanya kalau > 5) --}}
                 @if (count($items) > 5)
                     <div class="flex justify-center mt-8 mb-8">
-                        <button class="lihat-lebih bg-[#4AA29D] text-white px-6 py-2 rounded-lg shadow-md hover:bg-[#3a817d] transition">
+                        <button class="lihat-lebih bg-[#4AA29D] text-white px-6 py-2 font-medium rounded-lg shadow-md hover:bg-[#3a817d] transition">
                             Lihat Lebih Banyak
                         </button>
                     </div>

@@ -10,6 +10,9 @@ Route::get('/berita', function () {
     return view('berita');   // route untuk daftar berita
 });
 
-Route::get('/berita/detail/{id}', function ($id) {
-    return view('detailberita', ['id' => $id]);  // route untuk detail berita
+Route::get('/berita/detail/{bulan}/{id}', function ($bulan, $id) {
+    return view('detailberita', [
+        'bulan' => $bulan,
+        'id' => $id
+    ]);  // route untuk detail berita sesuai bulan dan id
 });
