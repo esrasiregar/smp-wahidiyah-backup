@@ -3,16 +3,22 @@ $beritaByMonth = [
     'Agustus 2025' => array_map(fn($i) => [
         'title' => "Berita Agustus $i",
         'desc'  => "Deskripsi singkat berita Agustus $i.",
+        'date'  => "28 Agustus 2025",
+        'author'=> "Admin SMP Wahidiyah",
         'image' => 'images/beritacontoh.png',
     ], range(1,10)),
     'Juli 2025' => array_map(fn($i) => [
         'title' => "Berita Juli $i",
         'desc'  => "Deskripsi singkat berita Juli $i.",
+        'date'  => "28 Juli 2025",
+        'author'=> "Admin SMP Wahidiyah",
         'image' => 'images/beritacontoh.png',
     ], range(1,10)),
     'Juni 2025' => array_map(fn($i) => [
         'title' => "Berita Juni $i",
         'desc'  => "Deskripsi singkat berita Juni $i.",
+        'date'  => "28 Juni 2025",
+        'author'=> "Admin SMP Wahidiyah",
         'image' => 'images/beritacontoh.png',
     ], range(1,10)),
 ];
@@ -54,20 +60,18 @@ $beritaByMonth = [
                 <div class="flex-1 border-2 border-[#3C3C3C] rounded-full"></div>
             </div>
 
-            {{-- SECTION per-bulan (penting untuk scope tombol) --}}
+            {{-- Grid berita --}}
             <section class="month-section" 
-                data-initial-visible-mobile="6" 
-                data-initial-visible-desktop="5">
-                {{-- Grid berita --}}
+                     data-initial-visible-mobile="6" 
+                     data-initial-visible-desktop="5">
                 <div class="grid gap-6 mt-6 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-
                     @foreach ($items as $index => $item)
                         <div class="bg-white shadow-lg rounded-xl overflow-hidden berita-item">
-                            <a href="{{ url('/berita/detail/'.$bulan.'/'.$loop->iteration) }}">
+                            <a href="{{ url('/berita/detail/'.urlencode($bulan).'/'.($index+1)) }}">
                                 <img src="{{ asset($item['image']) }}" alt="{{ $item['title'] }}" class="w-full h-40 object-cover">
                             </a>
                             <div class="p-4">
-                                <a href="{{ url('/berita/detail/'.$bulan.'/'.$loop->iteration) }}">
+                                <a href="{{ url('/berita/detail/'.urlencode($bulan).'/'.($index+1)) }}">
                                     <h2 class="font-bold text-lg mb-2 hover:text-[#4AA29D] transition">
                                         {{ $item['title'] }}
                                     </h2>
@@ -76,12 +80,10 @@ $beritaByMonth = [
                             </div>
                         </div>
                     @endforeach
-
-
                 </div>
 
-                {{-- Tombol (muncul hanya kalau > 5) --}}
-                @if (count($items) > 5)
+                {{-- Tombol lihat lebih banyak --}}
+                @if(count($items) > 5)
                     <div class="flex justify-center mt-8 mb-8">
                         <button class="lihat-lebih bg-[#4AA29D] text-white px-6 py-2 font-medium rounded-lg shadow-md hover:bg-[#3a817d] transition">
                             Lihat Lebih Banyak
