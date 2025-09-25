@@ -17,6 +17,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('role', ['admin', 'staff'])->default('staff');
+            $table->string('position')->nullable(); // jabatan (guru, kepala sekolah, dll)
+            $table->string('photo_path')->nullable(); // path foto profil
+            $table->boolean('show_on_website')->default(false); // tampilkan di website atau tidak
             $table->rememberToken();
             $table->timestamps();
         });

@@ -1,3 +1,4 @@
+import './scroll.js';
 document.addEventListener("DOMContentLoaded", () => {
     // === Toggle Mobile Menu ===
     const btn = document.getElementById("menu-toggle");

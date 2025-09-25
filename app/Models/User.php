@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',            // admin / staff
+        'position',        // jabatan
+        'photo_path',      // path foto
+        'show_on_website', // tampil di website atau tidak
     ];
 
     /**
@@ -40,6 +44,12 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        'password' => 'hashed', // 👈 otomatis hash password
     ];
+    public function getPhotoUrlAttribute(): string
+{
+    return $this->photo_path
+        ? asset('storage/' . $this->photo_path)
+        : asset('images/default-user.jpg');
+}
 }
